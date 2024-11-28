@@ -1,19 +1,12 @@
-from audio import Audio
-from utils import generate_short_id
-import time
-from controller import Controller
+from PyQt5.QtWidgets import QApplication
+import sys
+from dashboard.login import LoginApp
 
 def main():
-    controller = Controller()
-    print("Record for 5 seconds")
-    uuid = generate_short_id()
-    audio = Audio(uuid=uuid)
-    audio.record()
-    time.sleep(1)
-    print("Recognizing your voice ...")
-    recognized_text = audio.recognize_audio()
-    controller.run_command(recognized_text)
-
+    app = QApplication(sys.argv)
+    login_app = LoginApp()
+    login_app.show()
+    sys.exit(app.exec_())
 
 if __name__ == "__main__":
     main()
